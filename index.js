@@ -4,16 +4,25 @@ const wordContainer=document.getElementById("word-container");
 const url="https://api.dictionaryapi.dev/api/v2/entries/en/";
 
 wordSubmit.addEventListener("submit", (event) => {
+    wordContainer.textContent="";
     const userWord=document.getElementById("user-word").value
     fetch(`${url}${userWord}`)
         .then(res => res.json())
         .then(data => {
             const numberOfMeanings = data[0].meanings;
-            //wordContainer.textContent = numberOfMeanings;
             numberOfMeanings.forEach((meaning) => {
-                const newListItem = document.createElement("li");
-                newListItem.textContent = meaning.partOfSpeech;
-                wordContainer.appendChild(newListItem);
+                const newMeaning = document.createElement("ul");
+                const newListPOS = document.createElement("li");
+                const newListDef = document.createElement("li");
+                const newListExample = document.createElement("li");
+                newListPOS.textContent = `Part of Speech: ${meaning.partOfSpeech}`;
+                newListDef.textContent = `Definition: ${meaning.definitions[0].definition}`;
+                newListExample.textContent = `Example: ${meaning.definitions[0].example}`;
+                if (meaning.definitions[0].example == undefined) {
+                    newListExample.textContent = "There is no example sentence for this definition"
+                }
+                wordContainer.append(newMeaning);
+                newMeaning.append(newListPOS, newListDef, newListExample);
             })
         })
     event.preventDefault();
