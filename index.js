@@ -23,8 +23,8 @@ wordSubmit.addEventListener("submit", (event) => {
                 if (meaning.definitions[0].example == undefined) {
                     newListExample.textContent = "There is no example sentence for this definition"
                 }
-                newListSynonym.textContent = `Synonym(s) of this form of the word: ${meaning.synonyms}`;
-                newListAntonym.textContent = `Antonym(s) of this form of the word: ${meaning.antonyms}`;
+                newListSynonym.textContent = `Synonym(s) of this form of the word: ${(meaning.synonyms).join(", ")}`;
+                newListAntonym.textContent = `Antonym(s) of this form of the word: ${(meaning.antonyms).join(", ")}`;
                 wordContainer.append(newMeaning);
                 newMeaning.append(newListPOS, newListDef, newListExample, newListSynonym, newListAntonym);
             })
