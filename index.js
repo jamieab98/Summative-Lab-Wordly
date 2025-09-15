@@ -4,6 +4,7 @@ const wordContainer = document.getElementById("word-container");
 const url = "https://api.dictionaryapi.dev/api/v2/entries/en/";
 const favoriteButton = document.getElementById("favoriteButton");
 const favoritesList = document.getElementById("favorites");
+const pronunciationBox = document.getElementById("pronunciation");
 const savedFavorites = [];
 const errorMessage1 = "The word you have provided is invalid. Please provide a valid word"
 const errorMessage2 = "You left the word field blank. Please provide a word"
@@ -33,6 +34,7 @@ wordSubmit.addEventListener("submit", (event) => {
                 wordContainer.append(newMeaning);
                 newMeaning.append(newListPOS, newListDef, newListExample, newListSynonym, newListAntonym);
             })
+            pronunciationBox.textContent = data[0].phonetic;
         })
         .catch((error) => {
             if (error == "TypeError: Cannot read properties of undefined (reading 'meanings')") {
@@ -44,6 +46,7 @@ wordSubmit.addEventListener("submit", (event) => {
             else {
                 wordContainer.textContent = error;
             }
+            pronunciationBox.textContent = "Something went wrong and a pronunciation cannot be found :("
         })
     event.preventDefault();
 })
