@@ -2,6 +2,11 @@ const testBox = document.getElementById("testing-box");
 const wordSubmit = document.getElementById("user-form");
 const wordContainer = document.getElementById("word-container");
 const url = "https://api.dictionaryapi.dev/api/v2/entries/en/";
+const favoriteButton = document.getElementById("favoriteButton");
+const favoritesList = document.getElementById("favorites");
+const savedFavorites = [];
+const errorMessage1 = "The word you have provided is invalid. Please provide a valid word"
+const errorMessage2 = "You left the word field blank. Please provide a word"
 
 wordSubmit.addEventListener("submit", (event) => {
     wordContainer.textContent="";
@@ -29,8 +34,33 @@ wordSubmit.addEventListener("submit", (event) => {
                 newMeaning.append(newListPOS, newListDef, newListExample, newListSynonym, newListAntonym);
             })
         })
-        .catch(error => {
-            wordContainer.textContent = error.message;
+        .catch((error) => {
+            if (error == "TypeError: Cannot read properties of undefined (reading 'meanings')") {
+                wordContainer.textContent = "The word you have provided is invalid. Please provide a valid word";
+            }
+            else if (error == `SyntaxError: Unexpected token '<', "<!DOCTYPE "... is not valid JSON`) {
+                wordContainer.textContent = "You left the word field blank. Please provide a word";
+            }
+            else {
+                wordContainer.textContent = error;
+            }
         })
     event.preventDefault();
+})
+
+favoriteButton.addEventListener("click", () => {
+    const savedWord = document.getElementById("user-word").value;
+    if (savedWord == "") {
+        favoritesList.textContent = errorMessage1;
+    }
+    else if(wordContainer.textContent == "The word you have provided is invalid. Please provide a valid word") {
+        favoritesList.textContent = errorMessage2;        
+    }
+    else if(savedFavorites.includes(savedWord)) {
+        favoritesList.textContent = "This word is already saved";
+    }
+    else {
+    savedFavorites.push(savedWord);
+    favoritesList.textContent = savedFavorites.join(", ");                
+    }
 })
