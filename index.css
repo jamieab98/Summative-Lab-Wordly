@@ -13,3 +13,15 @@ body {
 #word-display p {
     background-color: lightblue;
 }
+
+h4 {
+    margin-bottom: 10px;
+}
+
+#favorites {
+    margin-top: 5px;
+}
+
+#favorites-heading {
+    margin-bottom: 5px;
+}

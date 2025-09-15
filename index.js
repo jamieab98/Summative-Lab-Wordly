@@ -49,7 +49,7 @@ wordSubmit.addEventListener("submit", (event) => {
 })
 
 favoriteButton.addEventListener("click", () => {
-    const savedWord = document.getElementById("user-word").value;
+    const savedWord = document.getElementById("user-word").value.toLowerCase();
     if (savedWord == "") {
         favoritesList.textContent = errorMessage1;
     }
