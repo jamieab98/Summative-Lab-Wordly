@@ -39,8 +39,18 @@ wordSubmit.addEventListener("submit", (event) => {
                 if (meaning.definitions[0].example == undefined) {
                     newListExample.textContent = "There is no example sentence for this definition"
                 }
-                newListSynonym.textContent = `Synonym(s) of this form of the word: ${(meaning.synonyms).join(", ")}`;
+                if (meaning.synonyms == "") {
+                    newListSynonym.textContent = "There is no available synonym for this word"
+                }
+                else {
+                newListSynonym.textContent = `Synonym(s) of this form of the word: ${(meaning.synonyms).join(", ")}`;      
+                }
+                if (meaning.antonyms == "") {
+                    newListAntonym.textContent = "There is no available antonym for this word"
+                }
+                else {
                 newListAntonym.textContent = `Antonym(s) of this form of the word: ${(meaning.antonyms).join(", ")}`;
+                }
                 wordContainer.append(newMeaning);
                 newMeaning.append(newListPOS, newListDef, newListExample, newListSynonym, newListAntonym);
             })
@@ -104,6 +114,8 @@ changeTheme.addEventListener("click", () => {
         pageBody.classList.add("dark");
         mainHeading.classList.remove("light");
         mainHeading.classList.add("dark");
+        changeTheme.classList.remove("light");
+        changeTheme.classList.add("dark");
     }
     else {
         currentTheme = "light"
@@ -112,6 +124,8 @@ changeTheme.addEventListener("click", () => {
         pageBody.classList.add("light");
         mainHeading.classList.remove("dark");
         mainHeading.classList.add("light");
+        changeTheme.classList.remove("dark");
+        changeTheme.classList.add("light");        
     }
 })
 

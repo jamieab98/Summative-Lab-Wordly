@@ -48,13 +48,27 @@ h4 {
     margin-left: auto;
 }
 
-#change-display:hover {
+#change-display.dark {
+    background-color: rgb(176, 176, 176);
+    color: black;
+}
+
+#change-display.light:hover {
     background-color: black;
     color: white;
     transform: scale(1);
+    transition: all 1.0s ease;
 }
 
-button:hover {
+#change-display.dark:hover {
+    background-color: white;
+    color: black;
+    transform: scale(1);
+    transition: all 1.0s ease;
+
+}
+
+.word-buttons:hover {
     background-color: pink;
     transform: scale(1.1);
     transition: all 1.0s ease;
