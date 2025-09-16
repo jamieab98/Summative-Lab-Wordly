@@ -7,7 +7,11 @@ const favoritesList = document.getElementById("favorites");
 const pronunciationBox = document.getElementById("pronunciation");
 const savedFavorites = [];
 const errorMessage1 = "The word you have provided is invalid. Please provide a valid word"
-const errorMessage2 = "You left the word field blank. Please provide a word"
+const errorMessage2 = "You left the word field blank. Please provide a word";
+const changeTheme = document.getElementById("change-display");
+const pageBody = document.getElementById("page-body");
+const mainHeading = document.getElementById("main-heading");
+let currentTheme = "light";
 
 wordSubmit.addEventListener("submit", (event) => {
     wordContainer.textContent = "";
@@ -81,5 +85,25 @@ favoriteButton.addEventListener("click", () => {
     else {
     savedFavorites.push(savedWord);
     favoritesList.textContent = savedFavorites.join(", ");                
+    }
+})
+
+changeTheme.addEventListener("click", () => {
+    //testBox.textContent = "button clicked";
+    if (currentTheme == "light") {
+        currentTheme = "dark";
+        changeTheme.textContent = "Click for Light Mode";
+        pageBody.classList.remove("light");
+        pageBody.classList.add("dark");
+        mainHeading.classList.remove("light");
+        mainHeading.classList.add("dark");
+    }
+    else {
+        currentTheme = "light"
+        changeTheme.textContent = "Click for Dark Mode";
+        pageBody.classList.remove("dark");
+        pageBody.classList.add("light");
+        mainHeading.classList.remove("dark");
+        mainHeading.classList.add("light");
     }
 })

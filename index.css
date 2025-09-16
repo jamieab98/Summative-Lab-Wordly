@@ -1,9 +1,18 @@
-body {
+body.light {
     background-color: lemonchiffon;
 }
 
-#main-heading {
+body.dark {
+    background-color: black;
+    color: rgb(176, 176, 176)
+}
+
+#main-heading.light {
     background-color: aqua;
+}
+
+#main-heading.dark {
+    background-color: navy;
 }
 
 #word-display {
@@ -28,4 +37,13 @@ h4 {
 
 .error {
     color: red;
+}
+
+#change-display-div {
+    display: flex;
+    padding-right: 10px;
+}
+
+#change-display {
+    margin-left: auto;
 }
