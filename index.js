@@ -34,8 +34,13 @@ wordSubmit.addEventListener("submit", (event) => {
                 wordContainer.append(newMeaning);
                 newMeaning.append(newListPOS, newListDef, newListExample, newListSynonym, newListAntonym);
             })
-            pronunciationBox.textContent = data[0].phonetic;
-        })
+            if (data[0].phonetic == null) {
+                pronunciationBox.textContent = "Something went wrong and a pronunciation cannot be found";
+            }
+            else {
+                pronunciationBox.textContent = data[0].phonetic;
+            } 
+            })
         .catch((error) => {
             if (error == "TypeError: Cannot read properties of undefined (reading 'meanings')") {
                 wordContainer.textContent = "The word you have provided is invalid. Please provide a valid word";
@@ -46,7 +51,6 @@ wordSubmit.addEventListener("submit", (event) => {
             else {
                 wordContainer.textContent = error;
             }
-            pronunciationBox.textContent = "Something went wrong and a pronunciation cannot be found :("
         })
     event.preventDefault();
 })
