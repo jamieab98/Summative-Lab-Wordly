@@ -25,3 +25,7 @@ h4 {
 #favorites-heading {
     margin-bottom: 5px;
 }
+
+.error {
+    color: red;
+}

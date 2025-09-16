@@ -10,7 +10,11 @@ const errorMessage1 = "The word you have provided is invalid. Please provide a v
 const errorMessage2 = "You left the word field blank. Please provide a word"
 
 wordSubmit.addEventListener("submit", (event) => {
-    wordContainer.textContent="";
+    wordContainer.textContent = "";
+    wordContainer.classList.remove('error');
+    pronunciationBox.textContent = "";
+    pronunciationBox.classList.remove('error');
+
     const userWord = document.getElementById("user-word").value
     fetch(`${url}${userWord}`)
         .then(res => res.json())
@@ -36,6 +40,7 @@ wordSubmit.addEventListener("submit", (event) => {
             })
             if (data[0].phonetic == null) {
                 pronunciationBox.textContent = "Something went wrong and a pronunciation cannot be found";
+                pronunciationBox.classList.add('error');
             }
             else {
                 pronunciationBox.textContent = data[0].phonetic;
@@ -44,27 +49,34 @@ wordSubmit.addEventListener("submit", (event) => {
         .catch((error) => {
             if (error == "TypeError: Cannot read properties of undefined (reading 'meanings')") {
                 wordContainer.textContent = "The word you have provided is invalid. Please provide a valid word";
+                wordContainer.classList.add('error');
             }
             else if (error == `SyntaxError: Unexpected token '<', "<!DOCTYPE "... is not valid JSON`) {
                 wordContainer.textContent = "You left the word field blank. Please provide a word";
+                wordContainer.classList.add('error');
             }
             else {
                 wordContainer.textContent = error;
+                wordContainer.classList.add('error');
             }
         })
     event.preventDefault();
 })
 
 favoriteButton.addEventListener("click", () => {
+    favoritesList.classList.remove('error');
     const savedWord = document.getElementById("user-word").value.toLowerCase();
     if (savedWord == "") {
         favoritesList.textContent = errorMessage1;
+        favoritesList.classList.add('error');
     }
     else if(wordContainer.textContent == "The word you have provided is invalid. Please provide a valid word") {
-        favoritesList.textContent = errorMessage2;        
+        favoritesList.textContent = errorMessage2;  
+        favoritesList.classList.add('error');      
     }
     else if(savedFavorites.includes(savedWord)) {
         favoritesList.textContent = "This word is already saved";
+        favoritesList.classList.add('error');
     }
     else {
     savedFavorites.push(savedWord);
