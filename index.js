@@ -12,6 +12,8 @@ const changeTheme = document.getElementById("change-display");
 const pageBody = document.getElementById("page-body");
 const mainHeading = document.getElementById("main-heading");
 let currentTheme = "light";
+const audioButton = document.getElementById("audio-button");
+const wordAudio = document.getElementById("word-audio")
 
 wordSubmit.addEventListener("submit", (event) => {
     wordContainer.textContent = "";
@@ -49,7 +51,13 @@ wordSubmit.addEventListener("submit", (event) => {
             else {
                 pronunciationBox.textContent = data[0].phonetic;
             } 
+            audioButton.addEventListener("click", () => {
+                const audio = data[0].phonetics[0].audio;
+                wordAudio.src = audio;
+                wordAudio.load();
+                wordAudio.play();
             })
+        }) 
         .catch((error) => {
             if (error == "TypeError: Cannot read properties of undefined (reading 'meanings')") {
                 wordContainer.textContent = "The word you have provided is invalid. Please provide a valid word";
@@ -89,7 +97,6 @@ favoriteButton.addEventListener("click", () => {
 })
 
 changeTheme.addEventListener("click", () => {
-    //testBox.textContent = "button clicked";
     if (currentTheme == "light") {
         currentTheme = "dark";
         changeTheme.textContent = "Click for Light Mode";
@@ -107,3 +114,4 @@ changeTheme.addEventListener("click", () => {
         mainHeading.classList.add("light");
     }
 })
+
