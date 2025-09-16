@@ -8,7 +8,7 @@
     <body id = "page-body" class = "light">
         <h1 id = "main-heading" class = "light">Welcome to Wordly</h1>
         <div id = "change-display-div">
-            <button id = "change-display">Click for Dark Mode</button>
+            <button id = "change-display" aria-label = "Changed the theme of the page">Click for Dark Mode</button>
         </div>
         <div id = "document-explanation">
             <h2>Website Purpose</h3>
@@ -17,8 +17,8 @@
         <br>
         <form id=  "user-form">
             <label>Word:</label>
-            <input type = "text" id = "user-word" name = "user-word">
-            <button type = "submit">Submit</button>
+            <input type = "text" id = "user-word" name = "user-word" aria-label = "area to accept user submitted words">
+            <button type = "submit" aria-label = "button to seach for the user submitted word in the dictionary">Submit</button>
         </form>
         <div id = pronunctiona-div>
             <h4>Pronunciation:</h4>
@@ -26,10 +26,10 @@
             <audio id = "word-audio">
                 <source src = "" type = "audio/mpeg">
             </audio>
-            <button id = "audio-button">Click for Pronunciation</button>
+            <button id = "audio-button" aria-label = "button to play an audio pronunciation of the user submitted word">Click for Pronunciation</button>
         </div>
         <h4>Click the button below to save this word</h4>
-        <button id = "favoriteButton">Favorite</button>
+        <button id = "favoriteButton" aria-label = "button to add the user searched word to their favorites list">Favorite</button>
         <div id = "testing-box"></div>
         <div id = "word-container"></div>
         <div>

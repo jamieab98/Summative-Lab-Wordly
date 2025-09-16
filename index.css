@@ -47,3 +47,15 @@ h4 {
 #change-display {
     margin-left: auto;
 }
+
+#change-display:hover {
+    background-color: black;
+    color: white;
+    transform: scale(1);
+}
+
+button:hover {
+    background-color: pink;
+    transform: scale(1.1);
+    transition: all 1.0s ease;
+}
